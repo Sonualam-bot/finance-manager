@@ -37,3 +37,18 @@ export const deleteExpense = async (id) => {
     throw new Error(`${error.message}`);
   }
 };
+
+export const updateExpenseFromDb = async (expense) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/expense/edit/${expense._id}`,
+      expense
+    );
+    if (response.status === 200) {
+      const data = response.data.expense;
+      return data;
+    }
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};

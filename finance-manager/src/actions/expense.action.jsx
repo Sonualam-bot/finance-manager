@@ -7,3 +7,8 @@ export const addExpense = (expenseInput) => ({
   type: "ADD_EXPENSE",
   payload: expenseInput,
 });
+
+export const editExpense = (status) => ({
+  type: "EDIT_EXPENSE",
+  payload: status,
+});

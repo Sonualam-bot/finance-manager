@@ -28,8 +28,22 @@ async function deleteSavingById(id) {
   }
 }
 
+async function editSavingData(id, updateData) {
+  try {
+    const updateSavingItem = await Savings.findByIdAndUpdate(
+      { _id: id },
+      updateData,
+      { new: true }
+    );
+    return updateSavingItem;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+}
+
 module.exports = {
   addSavings,
   getAllSavings,
   deleteSavingById,
+  editSavingData,
 };

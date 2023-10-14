@@ -38,3 +38,18 @@ export const deleteIncome = async (id) => {
     throw new Error(`${error.message}`);
   }
 };
+
+export const updateIncomeFromDb = async (income) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/income/edit/${income._id}`,
+      income
+    );
+    if (response.status === 200) {
+      const data = response.data.income;
+      return data;
+    }
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};

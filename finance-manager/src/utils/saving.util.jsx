@@ -3,6 +3,7 @@ import {
   addSavings,
   deleteSaving,
   fetchSavings,
+  updateSavingFromDb,
 } from "../services/saving.service";
 
 export const getAllSavings = async (dispatch) => {
@@ -29,6 +30,17 @@ export const updateSavingAfterDeletion = async (dispatch, id) => {
   try {
     const dataAfterDeletion = await deleteSaving(id);
     if (dataAfterDeletion) {
+      getAllSavings(dispatch);
+    }
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};
+
+export const updateSavingAfterEdit = async (dispatch, item) => {
+  try {
+    const data = await updateSavingFromDb(item);
+    if (data) {
       getAllSavings(dispatch);
     }
   } catch (error) {

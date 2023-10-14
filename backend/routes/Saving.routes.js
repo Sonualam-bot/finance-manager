@@ -5,6 +5,7 @@ const {
   addSavings,
   getAllSavings,
   deleteSavingById,
+  editSavingData,
 } = require("../controllers/Saving.controller");
 
 savingRouter.post("/add/saving", async (req, res) => {
@@ -76,6 +77,27 @@ savingRouter.delete("/saving/delete/:savingId", async (req, res) => {
       success: false,
       message: "Failed to delete saving",
     });
+  }
+});
+
+savingRouter.post("/saving/edit/:savingId", async (req, res) => {
+  try {
+    const savingId = req.params.savingId;
+    const updatedSaving = await editSavingData(savingId, req.body);
+    if (!updatedSaving) {
+      res.status(401).json({
+        success: false,
+        message: "saving listing not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully updated income data",
+      saving: updatedSaving,
+    });
+  } catch (error) {
+    throw new Error(`${error.message}`);
   }
 });
 

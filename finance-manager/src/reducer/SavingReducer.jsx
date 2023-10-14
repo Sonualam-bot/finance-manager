@@ -3,6 +3,7 @@ const initialState = {
   savingInput: {
     description: "",
     amount: "",
+    editSavingData: false,
   },
 };
 
@@ -17,6 +18,11 @@ export const SavingReducer = (state = initialState, action) => {
       return {
         ...state,
         savingInput: action.payload,
+      };
+    case "EDIT_SAVING":
+      return {
+        ...state,
+        editSavingData: action.payload,
       };
     default:
       return state;

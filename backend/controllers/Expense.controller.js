@@ -28,8 +28,22 @@ async function deleteExpenseById(id) {
   }
 }
 
+async function editExpenseData(id, updateData) {
+  try {
+    const updateExpenseItem = await Expense.findByIdAndUpdate(
+      { _id: id },
+      updateData,
+      { new: true }
+    );
+    return updateExpenseItem;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+}
+
 module.exports = {
   addExpense,
   getAllExpense,
   deleteExpenseById,
+  editExpenseData,
 };

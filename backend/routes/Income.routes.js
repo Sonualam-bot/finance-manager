@@ -5,6 +5,7 @@ const {
   addIncome,
   getIncomeData,
   deleteIncomeById,
+  editIncomeData,
 } = require("../controllers/Income.controller");
 
 incomeRouter.post("/add/income", async (req, res) => {
@@ -76,6 +77,27 @@ incomeRouter.delete("/income/delete/:incomeId", async (req, res) => {
       success: false,
       message: "Failed to delete income",
     });
+  }
+});
+
+incomeRouter.post("/income/edit/:incomeId", async (req, res) => {
+  try {
+    const incomeId = req.params.incomeId;
+    const updatedIncome = await editIncomeData(incomeId, req.body);
+    if (!updatedIncome) {
+      res.status(401).json({
+        success: false,
+        message: "income listing not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully updated income data",
+      income: updatedIncome,
+    });
+  } catch (error) {
+    throw new Error(`${error.message}`);
   }
 });
 

@@ -28,8 +28,22 @@ async function deleteIncomeById(id) {
   }
 }
 
+async function editIncomeData(id, updateData) {
+  try {
+    const updateIncomeItem = await Income.findByIdAndUpdate(
+      { _id: id },
+      updateData,
+      { new: true }
+    );
+    return updateIncomeItem;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+}
+
 module.exports = {
   addIncome,
   getIncomeData,
   deleteIncomeById,
+  editIncomeData,
 };

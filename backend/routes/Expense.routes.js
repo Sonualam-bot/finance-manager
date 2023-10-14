@@ -5,6 +5,7 @@ const {
   addExpense,
   getAllExpense,
   deleteExpenseById,
+  editExpenseData,
 } = require("../controllers/Expense.controller");
 
 expenseRouter.post("/add/expense", async (req, res) => {
@@ -78,6 +79,27 @@ expenseRouter.delete("/expense/delete/:expenseId", async (req, res) => {
       success: false,
       message: "Failed to delete expense",
     });
+  }
+});
+
+expenseRouter.post("/expense/edit/:expenseId", async (req, res) => {
+  try {
+    const expenseId = req.params.expenseId;
+    const updatedExpense = await editExpenseData(expenseId, req.body);
+    if (!updatedExpense) {
+      res.status(401).json({
+        success: false,
+        message: "Expense listing not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully updated expense data",
+      expense: updatedExpense,
+    });
+  } catch (error) {
+    throw new Error(`${error.message}`);
   }
 });
 

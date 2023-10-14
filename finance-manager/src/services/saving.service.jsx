@@ -38,3 +38,18 @@ export const deleteSaving = async (id) => {
     throw new Error(`${error.message}`);
   }
 };
+
+export const updateSavingFromDb = async (saving) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/saving/edit/${saving._id}`,
+      saving
+    );
+    if (response.status === 200) {
+      const data = response.data.saving;
+      return data;
+    }
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};

@@ -3,6 +3,7 @@ import {
   addExpenses,
   deleteExpense,
   fetchExpenses,
+  updateExpenseFromDb,
 } from "../services/expense.service";
 
 export const getAllExpenses = async (dispatch) => {
@@ -14,9 +15,9 @@ export const getAllExpenses = async (dispatch) => {
   }
 };
 
-export const addNewExpense = async (dispatch) => {
+export const addNewExpense = async (dispatch, expenseData) => {
   try {
-    const data = await addExpenses();
+    const data = await addExpenses(expenseData);
     if (data) {
       dispatch(getAllExpenses(data));
     }
@@ -29,6 +30,17 @@ export const updateExpenseAfterDeletion = async (dispatch, id) => {
   try {
     const dataAfterDeletion = await deleteExpense(id);
     if (dataAfterDeletion) {
+      getAllExpenses(dispatch);
+    }
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+};
+
+export const updateExpenseAfterEdit = async (dispatch, item) => {
+  try {
+    const data = await updateExpenseFromDb(item);
+    if (data) {
       getAllExpenses(dispatch);
     }
   } catch (error) {

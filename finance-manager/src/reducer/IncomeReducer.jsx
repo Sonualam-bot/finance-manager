@@ -3,6 +3,7 @@ const initialState = {
   incomeInput: {
     description: "",
     amount: "",
+    editIncomeData: false,
   },
 };
 
@@ -17,6 +18,11 @@ export const IncomeReducer = (state = initialState, action) => {
       return {
         ...state,
         incomeInput: action.payload,
+      };
+    case "EDIT_INCOME":
+      return {
+        ...state,
+        editIncomeData: action.payload,
       };
     default:
       return state;

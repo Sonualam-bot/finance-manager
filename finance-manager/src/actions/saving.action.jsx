@@ -3,7 +3,12 @@ export const getSavings = (saving) => ({
   payload: saving,
 });
 
-export const addSavings = (savingInput) => ({
+export const addSavingsInput = (savingInput) => ({
   type: "ADD_SAVING",
   payload: savingInput,
+});
+
+export const editSaving = (status) => ({
+  type: "EDIT_SAVING",
+  payload: status,
 });

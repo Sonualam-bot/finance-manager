@@ -5,6 +5,7 @@ const initialState = {
     amount: "",
     category: "",
   },
+  editExpenseData: false,
 };
 
 export const ExpenseReducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ export const ExpenseReducer = (state = initialState, action) => {
       return {
         ...state,
         expenseInput: action.payload,
+      };
+    case "EDIT_EXPENSE":
+      return {
+        ...state,
+        editExpenseData: action.payload,
       };
     default:
       return state;
