@@ -62,7 +62,7 @@
   }
   
   button[type="submit"] {
-    background-color: #007BFF;
+    background-color: var(--btn-color);
     color: #fff;
     border: none;
     padding: 10px;
@@ -71,6 +71,6 @@
   }
   
   button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: var(--btn-color);
   }
   

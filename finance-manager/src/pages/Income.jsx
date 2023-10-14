@@ -5,6 +5,9 @@ import { useState } from "react";
 import IncomeForm from "../forms/IncomeForm";
 import { addIncome, editIncome } from "../actions/income.action";
 
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
 function Income() {
   const income = useSelector((state) => state.incomeSlice.incomeDb);
   const dispatch = useDispatch();
@@ -25,10 +28,34 @@ function Income() {
     dispatch(addIncome(item));
   };
 
+  const generatePDF = () => {
+    const doc = new jsPDF();
+
+    const columns = ["Sn. No.", "Description", "Amount"];
+    const data = income.map((item, index) => [
+      index + 1,
+      item.description,
+      item.amount,
+    ]);
+
+    doc.autoTable({
+      head: [columns],
+      body: data,
+    });
+
+    doc.save("income.pdf");
+  };
+
   return (
     <div>
-      <h1>Income</h1>
-      <button onClick={openModal}>Open Income Form</button>
+      <div className="incomeTopBtn">
+        <button className="commonBtn" onClick={openModal}>
+          Open Income Form
+        </button>
+        <button className="commonBtn" onClick={generatePDF}>
+          Print Income Data
+        </button>
+      </div>
 
       {isModalOpen && <IncomeForm closeModal={closeModal} />}
 

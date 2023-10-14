@@ -4,18 +4,28 @@ import "../Css/Navigation.css";
 function NavigationLeft() {
   return (
     <div className="navigation">
-      <NavLink className="navlink" to="/">
-        Home
-      </NavLink>
-      <NavLink className="navlink" to="/income">
-        Income
-      </NavLink>
-      <NavLink className="navlink" to="/saving">
-        Saving
-      </NavLink>
-      <NavLink className="navlink" to="/expense">
-        Expense
-      </NavLink>
+      <div className="nav-child">
+        <div>
+          <NavLink className="navlink" to="/">
+            Home
+          </NavLink>
+        </div>
+        <div>
+          <NavLink className="navlink" to="/income">
+            Income
+          </NavLink>
+        </div>
+        <div>
+          <NavLink className="navlink" to="/saving">
+            Saving
+          </NavLink>
+        </div>
+        <div>
+          <NavLink className="navlink" to="/expense">
+            Expense
+          </NavLink>
+        </div>
+      </div>
     </div>
   );
 }

@@ -5,6 +5,9 @@ import { useState } from "react";
 import ExpenseForm from "../forms/ExpenseForm";
 import { addExpense, editExpense } from "../actions/expense.action";
 
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
 function Expense() {
   const expense = useSelector((state) => state.expenseSlice.expenseDb);
 
@@ -26,11 +29,35 @@ function Expense() {
     dispatch(addExpense(item));
   };
 
+  const generatePDF = () => {
+    const doc = new jsPDF();
+
+    const columns = ["Sn. No.", "Description", "Amount", "Category"];
+    const data = expense.map((item, index) => [
+      index + 1,
+      item.description,
+      item.amount,
+      item.category,
+    ]);
+
+    doc.autoTable({
+      head: [columns],
+      body: data,
+    });
+
+    doc.save("expense.pdf");
+  };
+
   return (
     <div>
-      <h2>Expense</h2>
-
-      <button onClick={openModal}>Open expense Form</button>
+      <div className="expenseTopBtn">
+        <button className="commonBtn" onClick={openModal}>
+          Open expense Form
+        </button>
+        <button className="commonBtn" onClick={generatePDF}>
+          Print Expense Data
+        </button>
+      </div>
 
       {isModalOpen && <ExpenseForm closeModal={closeModal} />}
 

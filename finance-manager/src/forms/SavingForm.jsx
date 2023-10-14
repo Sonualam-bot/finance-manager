@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../Css/Form.css";
+import "../Css/Table.css";
 import { addSavings } from "../services/saving.service";
 import { getAllSavings, updateSavingAfterEdit } from "../utils/saving.util";
 import { addSavingsInput } from "../actions/saving.action";
@@ -64,7 +65,9 @@ function SavingForm({ closeModal }) {
             value={savingInput?.amount}
             name="amount"
           />
-          <button type="submit">{editSavingStatus ? "Edit" : "Add"}</button>
+          <button className="submitBTn" type="submit">
+            {editSavingStatus ? "Edit" : "Add"}
+          </button>
         </form>
       </div>
     </div>

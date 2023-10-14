@@ -5,6 +5,9 @@ import { useState } from "react";
 import SavingForm from "../forms/SavingForm";
 import { addSavingsInput, editSaving } from "../actions/saving.action";
 
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
 function Savings() {
   const saving = useSelector((state) => state.savingSlice.savingDb);
   const dispatch = useDispatch();
@@ -25,11 +28,35 @@ function Savings() {
     dispatch(addSavingsInput(item));
   };
 
+  const generatePDF = () => {
+    const doc = new jsPDF();
+
+    const columns = ["Sn. No.", "Description", "Amount", "Category"];
+    const data = saving.map((item, index) => [
+      index + 1,
+      item.description,
+      item.amount,
+      item.category,
+    ]);
+
+    doc.autoTable({
+      head: [columns],
+      body: data,
+    });
+
+    doc.save("saving.pdf");
+  };
+
   return (
     <div>
-      <h1>Saving</h1>
-
-      <button onClick={openModal}>Open Income Form</button>
+      <div className="savingTop">
+        <button className="commonBtn" onClick={openModal}>
+          Open Income Form
+        </button>
+        <button className="commonBtn" onClick={generatePDF}>
+          Print Saving Data
+        </button>
+      </div>
 
       {isModalOpen && <SavingForm closeModal={closeModal} />}
 

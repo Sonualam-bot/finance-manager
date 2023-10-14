@@ -5,8 +5,14 @@
 }
 
 :root{
-  --primary-color: #2563eb
+  --primary-color: #1f2937;
+  --btn-color: #4b5563;
 }
+
+/* body{
+  background: rgb(96,165,250);
+  background: linear-gradient(344deg, rgba(96,165,250,1) 50%, rgba(125,211,252,1) 50%);
+} */
 
 .main{
   display: flex;
@@ -16,14 +22,11 @@
 }
 
 .naviMain{
-  width: 200px;
+  width: 250px;
+  height: 90vh;
 }
 
 .route{
-  width: 85vw;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
+  
 }

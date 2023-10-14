@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../Css/Form.css";
+import "../Css/Table.css";
 import { addExpense } from "../actions/expense.action";
 import { getAllExpenses, updateExpenseAfterEdit } from "../utils/expense.utils";
 import { addExpenses } from "../services/expense.service";
@@ -93,7 +94,9 @@ function ExpenseForm({ closeModal }) {
               );
             })}
           </select>
-          <button type="submit">{editExpenseStatus ? "Edit" : "Add"}</button>
+          <button className="submitBTn" type="submit">
+            {editExpenseStatus ? "Edit" : "Add"}
+          </button>
         </form>
       </div>
     </div>

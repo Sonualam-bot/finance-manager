@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../Css/Form.css";
+import "../Css/Table.css";
 import { addIncome } from "../actions/income.action";
 import { createIncome } from "../services/income.service";
 import { getAllIncomeData, updateIncomeAfterEdit } from "../utils/income.utils";
@@ -65,7 +66,9 @@ function IncomeForm({ closeModal }) {
             name="amount"
             onChange={handleIncomeInput}
           />
-          <button type="submit">{editIncomeStatus ? "Edit" : "Add"}</button>
+          <button className="submitBTn" type="submit">
+            {editIncomeStatus ? "Edit" : "Add"}
+          </button>
         </form>
       </div>
     </div>
