@@ -2,9 +2,13 @@
   "name": "assingment-19",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "backend/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install-server": "cd backend && npm install",
+    "start-server": "cd backend && node server.js",
+    "install-client": "cd inventory-management && npm install",
+    "build-client": "cd inventory-management && npm run build",
+    "start-client": "cd inventory-management && npm run start"
   },
   "keywords": [],
   "author": "",
