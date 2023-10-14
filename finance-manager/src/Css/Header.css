@@ -1,0 +1,9 @@
+.header{
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
+}
