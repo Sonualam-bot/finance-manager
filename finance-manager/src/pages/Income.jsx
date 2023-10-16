@@ -67,6 +67,7 @@ function Income() {
               <th>Description</th>
               <th>Amount</th>
               <th>Category</th>
+              <th>Date</th>
               <th>Update</th>
             </tr>
           </thead>
@@ -78,6 +79,10 @@ function Income() {
                   <td>{item.description}</td>
                   <td>{item.amount}</td>
                   <td>{item.category}</td>
+                  <td>
+                    {" "}
+                    {new Date(item?.createdAt).toLocaleDateString("en-GB")}
+                  </td>
                   <td>
                     <div className="tableBtn">
                       <span

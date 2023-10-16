@@ -69,17 +69,23 @@ function Expense() {
               <th>Description</th>
               <th>Amount</th>
               <th>Category</th>
+              <th>Date</th>
               <th>Update</th>
             </tr>
           </thead>
           <tbody>
             {expense?.map((item, index) => {
+              console.log(item);
               return (
                 <tr key={item._id}>
                   <td>{index + 1}</td>
                   <td>{item.description}</td>
                   <td>{item.amount}</td>
                   <td>{item.category}</td>
+                  <td>
+                    {" "}
+                    {new Date(item?.createdAt).toLocaleDateString("en-GB")}
+                  </td>
                   <td>
                     <div className="tableBtn">
                       <span
