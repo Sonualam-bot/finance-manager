@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import "../Css/Navigation.css";
 
+import { AiFillGithub } from "react-icons/ai";
+
 function NavigationLeft() {
   return (
     <div className="navigation">
@@ -23,6 +25,15 @@ function NavigationLeft() {
         <div>
           <NavLink className="navlink" to="/expense">
             Expense
+          </NavLink>
+        </div>
+        <div>
+          <NavLink
+            className="navlink"
+            to="https://github.com/Sonualam-bot/finance-manager"
+            target="_blank"
+          >
+            <AiFillGithub className="github" />
           </NavLink>
         </div>
       </div>
