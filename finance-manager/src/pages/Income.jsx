@@ -7,12 +7,15 @@ import { addIncome, editIncome } from "../actions/income.action";
 
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { incomeCategories } from "../utils/Categories";
 
 function Income() {
   const income = useSelector((state) => state.incomeSlice.incomeDb);
   const dispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -46,6 +49,19 @@ function Income() {
     doc.save("income.pdf");
   };
 
+  const sortedIncomeOnClick = isChecked
+    ? [...income].sort((a, b) => a.amount - b.amount)
+    : [...income];
+
+  const sortByCategory = [...sortedIncomeOnClick]?.filter((income) =>
+    income.category.includes(selectedCategory)
+  );
+
+  const totalExpense = sortedIncomeOnClick?.reduce(
+    (acc, curr) => acc + curr.amount,
+    0
+  );
+
   return (
     <div>
       <div className="incomeTopBtn">
@@ -55,6 +71,31 @@ function Income() {
         <button className="commonBtn" onClick={generatePDF}>
           Print Income Data
         </button>
+        <fieldset>
+          <legend>Sort & Filter</legend>
+          <div>
+            <input
+              type="checkbox"
+              value="asc"
+              onChange={() => setIsChecked(!isChecked)}
+            />
+            Amount
+          </div>
+
+          <select
+            name="category"
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option value="">Select Category</option>
+            {incomeCategories?.map((categories) => {
+              return (
+                <option key={categories} value={categories}>
+                  {categories}
+                </option>
+              );
+            })}
+          </select>
+        </fieldset>
       </div>
 
       {isModalOpen && <IncomeForm closeModal={closeModal} />}
@@ -72,12 +113,12 @@ function Income() {
             </tr>
           </thead>
           <tbody>
-            {income?.map((item, index) => {
+            {sortByCategory?.map((item, index) => {
               return (
                 <tr key={item._id}>
                   <td>{index + 1}</td>
                   <td>{item.description}</td>
-                  <td>{item.amount}</td>
+                  <td>₹ {item.amount}</td>
                   <td>{item.category}</td>
                   <td>
                     {" "}
@@ -104,6 +145,17 @@ function Income() {
                 </tr>
               );
             })}
+            <tr>
+              {" "}
+              <td>
+                <h3>Total Expense:- </h3>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>₹ {totalExpense}</td>
+            </tr>
           </tbody>
         </table>
       </div>

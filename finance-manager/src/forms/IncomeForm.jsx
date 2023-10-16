@@ -4,6 +4,7 @@ import "../Css/Table.css";
 import { addIncome } from "../actions/income.action";
 import { createIncome } from "../services/income.service";
 import { getAllIncomeData, updateIncomeAfterEdit } from "../utils/income.utils";
+import { incomeCategories } from "../utils/Categories";
 
 function IncomeForm({ closeModal }) {
   const incomeInput = useSelector((state) => state.incomeSlice.incomeInput);
@@ -44,16 +45,6 @@ function IncomeForm({ closeModal }) {
       throw new Error(`${error.message}`);
     }
   };
-
-  const incomeCategories = [
-    "Salary",
-    "Freelance",
-    "Business Income",
-    "Investments",
-    "Rent",
-    "Interest",
-    "Other",
-  ];
 
   return (
     <div className="modal">

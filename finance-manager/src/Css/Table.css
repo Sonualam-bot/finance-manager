@@ -30,6 +30,20 @@
       
     }
 
+    fieldset{
+      width: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+    }
+
+    fieldset > select{
+      background-color: inherit;
+      padding: .2rem;
+    }
+
+
 
     /* Common Btns starts here */
     .commonBtn {

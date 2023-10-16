@@ -4,6 +4,7 @@ import "../Css/Table.css";
 import { addSavings } from "../services/saving.service";
 import { getAllSavings, updateSavingAfterEdit } from "../utils/saving.util";
 import { addSavingsInput } from "../actions/saving.action";
+import { savingCategories } from "../utils/Categories";
 
 function SavingForm({ closeModal }) {
   const savingInput = useSelector((state) => state.savingSlice.savingInput);
@@ -43,16 +44,6 @@ function SavingForm({ closeModal }) {
       throw new Error(`${error.message}`);
     }
   };
-
-  const savingCategories = [
-    "Emergency Fund",
-    "Retirement",
-    "Travel",
-    "Education",
-    "Home Down Payment",
-    "Vacation",
-    "Debt Repayment",
-  ];
 
   return (
     <div className="modal">

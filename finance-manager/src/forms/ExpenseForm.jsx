@@ -4,6 +4,7 @@ import "../Css/Table.css";
 import { addExpense } from "../actions/expense.action";
 import { getAllExpenses, updateExpenseAfterEdit } from "../utils/expense.utils";
 import { addExpenses } from "../services/expense.service";
+import { expenseCategories } from "../utils/Categories";
 
 function ExpenseForm({ closeModal }) {
   const expenseInput = useSelector((state) => state.expenseSlice.expenseInput);
@@ -43,18 +44,6 @@ function ExpenseForm({ closeModal }) {
     }
   };
 
-  const category = [
-    "Housing",
-    "Transportation",
-    "Food",
-    "Entertainment",
-    "Health",
-    "Shopping",
-    "Education",
-    "Travel",
-    "Miscellaneous",
-  ];
-
   return (
     <div className="modal">
       <div className="modal-content">
@@ -86,7 +75,7 @@ function ExpenseForm({ closeModal }) {
             onChange={handleExpenseInput}
           >
             <option>Select Category</option>
-            {category?.map((cat) => {
+            {expenseCategories?.map((cat) => {
               return (
                 <option key={cat} value={cat}>
                   {cat}
