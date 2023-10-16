@@ -3,8 +3,9 @@ const initialState = {
   savingInput: {
     description: "",
     amount: "",
-    editSavingData: false,
+    category: "",
   },
+  editSavingData: false,
 };
 
 export const SavingReducer = (state = initialState, action) => {

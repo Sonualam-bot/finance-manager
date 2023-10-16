@@ -25,6 +25,11 @@
       cursor: pointer;
     }
 
+    .select{
+      padding: .4rem;
+      
+    }
+
 
     /* Common Btns starts here */
     .commonBtn {

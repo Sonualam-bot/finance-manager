@@ -16,6 +16,7 @@ function IncomeForm({ closeModal }) {
 
   const handleIncomeInput = (e) => {
     const { name, value } = e.target;
+    console.log({ ...incomeInput, [name]: value });
     dispatch(addIncome({ ...incomeInput, [name]: value }));
   };
 
@@ -36,12 +37,23 @@ function IncomeForm({ closeModal }) {
         addIncome({
           description: "",
           amount: "",
+          category: "",
         })
       );
     } catch (error) {
       throw new Error(`${error.message}`);
     }
   };
+
+  const incomeCategories = [
+    "Salary",
+    "Freelance",
+    "Business Income",
+    "Investments",
+    "Rent",
+    "Interest",
+    "Other",
+  ];
 
   return (
     <div className="modal">
@@ -66,6 +78,21 @@ function IncomeForm({ closeModal }) {
             name="amount"
             onChange={handleIncomeInput}
           />
+          <select
+            name="category"
+            value={incomeInput?.category}
+            onChange={handleIncomeInput}
+            className="select"
+          >
+            <option>Select a category</option>
+            {incomeCategories?.map((category) => {
+              return (
+                <option value={category} key={category}>
+                  {category}
+                </option>
+              );
+            })}
+          </select>
           <button className="submitBTn" type="submit">
             {editIncomeStatus ? "Edit" : "Add"}
           </button>

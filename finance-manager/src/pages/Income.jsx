@@ -66,6 +66,7 @@ function Income() {
               <th>Sn. No.</th>
               <th>Description</th>
               <th>Amount</th>
+              <th>Category</th>
               <th>Update</th>
             </tr>
           </thead>
@@ -76,6 +77,7 @@ function Income() {
                   <td>{index + 1}</td>
                   <td>{item.description}</td>
                   <td>{item.amount}</td>
+                  <td>{item.category}</td>
                   <td>
                     <div className="tableBtn">
                       <span

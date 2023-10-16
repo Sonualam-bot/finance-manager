@@ -36,12 +36,24 @@ function SavingForm({ closeModal }) {
         addSavingsInput({
           description: "",
           amount: "",
+          category: "",
         })
       );
     } catch (error) {
       throw new Error(`${error.message}`);
     }
   };
+
+  const savingCategories = [
+    "Emergency Fund",
+    "Retirement",
+    "Travel",
+    "Education",
+    "Home Down Payment",
+    "Vacation",
+    "Debt Repayment",
+  ];
+
   return (
     <div className="modal">
       <div className="modal-content">
@@ -65,6 +77,21 @@ function SavingForm({ closeModal }) {
             value={savingInput?.amount}
             name="amount"
           />
+          <select
+            name="category"
+            value={savingInput?.category}
+            onChange={handleSavingInput}
+            className="select"
+          >
+            <option>Select a category</option>
+            {savingCategories?.map((category) => {
+              return (
+                <option value={category} key={category}>
+                  {category}
+                </option>
+              );
+            })}
+          </select>
           <button className="submitBTn" type="submit">
             {editSavingStatus ? "Edit" : "Add"}
           </button>

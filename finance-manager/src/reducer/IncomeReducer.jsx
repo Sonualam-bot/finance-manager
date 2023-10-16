@@ -3,8 +3,9 @@ const initialState = {
   incomeInput: {
     description: "",
     amount: "",
-    editIncomeData: false,
+    category: "",
   },
+  editIncomeData: false,
 };
 
 export const IncomeReducer = (state = initialState, action) => {
