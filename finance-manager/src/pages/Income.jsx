@@ -100,65 +100,71 @@ function Income() {
 
       {isModalOpen && <IncomeForm closeModal={closeModal} />}
 
-      <div className="tableData">
-        <table>
-          <thead>
-            <tr>
-              <th>Sn. No.</th>
-              <th>Description</th>
-              <th>Amount</th>
-              <th>Category</th>
-              <th>Date</th>
-              <th>Update</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortByCategory?.map((item, index) => {
-              return (
-                <tr key={item._id}>
-                  <td>{index + 1}</td>
-                  <td>{item.description}</td>
-                  <td>₹ {item.amount}</td>
-                  <td>{item.category}</td>
-                  <td>
-                    {" "}
-                    {new Date(item?.createdAt).toLocaleDateString("en-GB")}
-                  </td>
-                  <td>
-                    <div className="tableBtn">
-                      <span
-                        className="material-symbols-outlined"
-                        onClick={() => handleEditIncome(item)}
-                      >
-                        edit_note
-                      </span>
-                      <span
-                        className="material-symbols-outlined"
-                        onClick={() =>
-                          updateIncomeAfterDeletion(dispatch, item._id)
-                        }
-                      >
-                        delete
-                      </span>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-            <tr>
-              {" "}
-              <td>
-                <h3>Total Expense:- </h3>
-              </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>₹ {totalExpense}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      {sortByCategory.length === 0 ? (
+        <div>
+          <h2>Loading Data....</h2>
+        </div>
+      ) : (
+        <div className="tableData">
+          <table>
+            <thead>
+              <tr>
+                <th>Sn. No.</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortByCategory?.map((item, index) => {
+                return (
+                  <tr key={item._id}>
+                    <td>{index + 1}</td>
+                    <td>{item.description}</td>
+                    <td>₹ {item.amount}</td>
+                    <td>{item.category}</td>
+                    <td>
+                      {" "}
+                      {new Date(item?.createdAt).toLocaleDateString("en-GB")}
+                    </td>
+                    <td>
+                      <div className="tableBtn">
+                        <span
+                          className="material-symbols-outlined"
+                          onClick={() => handleEditIncome(item)}
+                        >
+                          edit_note
+                        </span>
+                        <span
+                          className="material-symbols-outlined"
+                          onClick={() =>
+                            updateIncomeAfterDeletion(dispatch, item._id)
+                          }
+                        >
+                          delete
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+              <tr>
+                {" "}
+                <td>
+                  <h3>Total Expense:- </h3>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>₹ {totalExpense}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }

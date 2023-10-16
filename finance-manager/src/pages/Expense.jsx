@@ -64,8 +64,6 @@ function Expense() {
     0
   );
 
-  console.log(totalExpense);
-
   return (
     <div>
       <div className="expenseTopBtn">
@@ -105,66 +103,72 @@ function Expense() {
 
       {isModalOpen && <ExpenseForm closeModal={closeModal} />}
 
-      <div className="tableData">
-        <table>
-          <thead>
-            <tr>
-              <th>Sn. No.</th>
-              <th>Description</th>
-              <th>Amount</th>
-              <th>Category</th>
-              <th>Date</th>
-              <th>Update</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortByExpense?.map((item, index) => {
-              console.log(item);
-              return (
-                <tr key={item._id}>
-                  <td>{index + 1}</td>
-                  <td>{item.description}</td>
-                  <td>₹ {item.amount}</td>
-                  <td>{item.category}</td>
-                  <td>
-                    {" "}
-                    {new Date(item?.createdAt).toLocaleDateString("en-GB")}
-                  </td>
-                  <td>
-                    <div className="tableBtn">
-                      <span
-                        className="material-symbols-outlined"
-                        onClick={() => handleEditExpense(item)}
-                      >
-                        edit_note
-                      </span>
-                      <span
-                        className="material-symbols-outlined"
-                        onClick={() =>
-                          updateExpenseAfterDeletion(dispatch, item._id)
-                        }
-                      >
-                        delete
-                      </span>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-            <tr>
-              {" "}
-              <td>
-                <h3>Total Expense:- </h3>
-              </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>₹ {totalExpense}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      {sortByExpense.length === 0 ? (
+        <div>
+          <h3>Loading Data....</h3>
+        </div>
+      ) : (
+        <div className="tableData">
+          <table>
+            <thead>
+              <tr>
+                <th>Sn. No.</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortByExpense?.map((item, index) => {
+                console.log(item);
+                return (
+                  <tr key={item._id}>
+                    <td>{index + 1}</td>
+                    <td>{item.description}</td>
+                    <td>₹ {item.amount}</td>
+                    <td>{item.category}</td>
+                    <td>
+                      {" "}
+                      {new Date(item?.createdAt).toLocaleDateString("en-GB")}
+                    </td>
+                    <td>
+                      <div className="tableBtn">
+                        <span
+                          className="material-symbols-outlined"
+                          onClick={() => handleEditExpense(item)}
+                        >
+                          edit_note
+                        </span>
+                        <span
+                          className="material-symbols-outlined"
+                          onClick={() =>
+                            updateExpenseAfterDeletion(dispatch, item._id)
+                          }
+                        >
+                          delete
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+              <tr>
+                {" "}
+                <td>
+                  <h3>Total Expense:- </h3>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>₹ {totalExpense}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
