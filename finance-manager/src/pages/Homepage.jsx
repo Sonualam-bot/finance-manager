@@ -15,15 +15,36 @@ function Homepage() {
       <h2>Welcome to Your Personal Finance Manager Web app</h2>
       <div className="parentHome">
         <div className="childHome">
-          <h4>₹ {totalIncome}</h4>
+          {income.length === 0 ? (
+            <div>
+              {" "}
+              <p>Loading...</p>{" "}
+            </div>
+          ) : (
+            <h4>₹ {totalIncome}</h4>
+          )}
           <h3>Total Income </h3>
         </div>
         <div className="childHome">
-          <h4>₹ {totalSavings}</h4>
+          {saving.length === 0 ? (
+            <div>
+              {" "}
+              <p>Loading...</p>{" "}
+            </div>
+          ) : (
+            <h4>₹ {totalSavings}</h4>
+          )}
           <h3>Total Saving </h3>
         </div>
         <div className="childHome">
-          <h4>₹ {totalExpenses}</h4>
+          {expense.length === 0 ? (
+            <div>
+              {" "}
+              <p>Loading...</p>{" "}
+            </div>
+          ) : (
+            <h4>₹ {totalExpenses}</h4>
+          )}
           <h3>Total Expense </h3>
         </div>
       </div>
